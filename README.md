@@ -1,4 +1,4 @@
 # RPSGame
-###Java program for popular Rock, Paper, Scissors Game
+##Java program for popular Rock, Paper, Scissors Game
 
 
