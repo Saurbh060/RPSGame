@@ -5,28 +5,28 @@ import java.util.Scanner;
 
 public class RPSGame {
 
-	public  InputEnum generateComputerChoice(Random random) throws InterruptedException {
+	public InputEnum generateComputerChoice(Random random) throws InterruptedException {
 		InputEnum computerChoice = null;
 		//Choosing a random number using the inbuilt function
 		int wordNumber = random.nextInt(3) + 1;
-		computerChoice = InputEnum.values()[wordNumber-1];
+		computerChoice = InputEnum.values()[wordNumber - 1];
 
 		printer("\nThe Computer already made it's choice");
 		return computerChoice;
 	}
 
-	public  void showMenu() throws InterruptedException {
+	public void showMenu() throws InterruptedException {
 		printer("Options to choose Integer Input from :\n1.Rock\n2.Paper\n3.Scissors");
 	}
 
-	public  InputEnum getUserChoice(Scanner scanner) throws InterruptedException {
+	public InputEnum getUserChoice(Scanner scanner) throws InterruptedException {
 
 		InputEnum inputVal = null;
 		try {
 			printer("\nPlease make yours : ");
 			String userWordChoice = scanner.nextLine();
 			Integer userInput = Integer.valueOf(userWordChoice);
-			inputVal = InputEnum.values()[userInput-1];
+			inputVal = InputEnum.values()[userInput - 1];
 		} catch (Exception e) {
 			printer("Please try with valid inputs: ");
 			throw e;
@@ -36,21 +36,21 @@ public class RPSGame {
 
 	}
 
-	public  String chooseWinner(InputEnum computerChoice, InputEnum userChoice) {
+	public String chooseWinner(InputEnum computerChoice, InputEnum userChoice) {
 
 		String winner = RPSCommonConstants.TIE;
 		String customMessage = RPSCommonConstants.TIE_MSG;
 
 		//Winner Logic for the game start
-		if (computerChoice == InputEnum.ROCK  && userChoice == InputEnum.SCISSOR) {
+		if (computerChoice == InputEnum.ROCK && userChoice == InputEnum.SCISSOR) {
 			winner = RPSCommonConstants.COMPUTER;
-			customMessage =  RPSCommonConstants.ROCK_MSG;
-		} else if (userChoice == InputEnum.ROCK  && computerChoice == InputEnum.SCISSOR) {
+			customMessage = RPSCommonConstants.ROCK_MSG;
+		} else if (userChoice == InputEnum.ROCK && computerChoice == InputEnum.SCISSOR) {
 			winner = RPSCommonConstants.USER;
-			customMessage =  RPSCommonConstants.ROCK_MSG;
+			customMessage = RPSCommonConstants.ROCK_MSG;
 		}
 
-		if (computerChoice == InputEnum.SCISSOR  && userChoice == InputEnum.PAPER) {
+		if (computerChoice == InputEnum.SCISSOR && userChoice == InputEnum.PAPER) {
 			winner = RPSCommonConstants.COMPUTER;
 			customMessage = RPSCommonConstants.SCISSOR_MSG;
 		} else if (computerChoice == InputEnum.PAPER && userChoice == InputEnum.SCISSOR) {
@@ -72,16 +72,15 @@ public class RPSGame {
 		return finalMessage;
 	}
 
-	public  void printer(String s) throws InterruptedException {
+	public void printer(String s) throws InterruptedException {
 		System.out.println(s);
 		Thread.sleep(1000);
 	}
 
-	public  void play() throws InterruptedException {
+	public void play() throws InterruptedException {
 
 		String play = "";
-		while (!play.equals("0"))
-		{
+		while (!play.equals("0")) {
 			Random random = new Random();
 			Scanner scanner = new Scanner(System.in);
 			InputEnum userChoice = null;
@@ -93,18 +92,16 @@ public class RPSGame {
 			boolean success = false;
 			int attempt = 5;
 
-			while (!success && attempt>0)
-			{
-				try{
+			while (!success && attempt > 0) {
+				try {
 					userChoice = getUserChoice(scanner);
 					success = true;
-				} catch(Exception e) {
+				} catch (Exception e) {
 					printer(String.format("Attempts remaining: %s ", --attempt));
 				}
 			}
 
-			if(attempt == 0)
-			{
+			if (attempt == 0) {
 				printer("Sorry, you are out of Attempts");
 				break;
 			}
